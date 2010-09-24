@@ -1,0 +1,15 @@
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\Bin\Debug\ApplicationIcon.png
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\Bin\Debug\Background.png
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\Bin\Debug\MortgageCalc.dll
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\Bin\Debug\MortgageCalc.pdb
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\Bin\Debug\AppManifest.xaml
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\Bin\Debug\MortgageCalc.xap
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\Bin\Debug\Microsoft.Phone.Controls.dll
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\Bin\Debug\Microsoft.Phone.Controls.xml
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\obj\Debug\ResolveAssemblyReference.cache
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\obj\Debug\App.g.i.cs
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\obj\Debug\MainPage.g.i.cs
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\obj\Debug\MortgageCalc.g.resources
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\obj\Debug\MortgageCalc.dll
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\obj\Debug\MortgageCalc.pdb
+c:\WhereIsJim\Live.Mesh\whereisjim-live\Document\Programming\C#\Project.MortgageCalc\MortgageCalc\MortgageCalc\obj\Debug\XapCacheFile.xml

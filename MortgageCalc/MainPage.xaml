@@ -1,0 +1,78 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="MortgageCalc.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
+    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="MY APPLICATION">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="Mortgage">
+
+            </controls:PivotItem>
+ 
+            <!--Pivot item two-->
+            <controls:PivotItem Header="Auto"> 
+                <!--Triple line list no text wrapping-->
+                    <ListBox x:Name="SecondListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,17">
+                                    <TextBlock Text="{Binding LineOne}" TextWrapping="NoWrap" Margin="12,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock Text="{Binding LineThree}" TextWrapping="NoWrap" Margin="12,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+            </controls:PivotItem>
+        </controls:Pivot>
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,180,0,0" Name="textBlockMortgageAmount" Text="Mortgage amount:   $" VerticalAlignment="Top" />
+        <TextBox Height="72" HorizontalAlignment="Left" Margin="235,158,0,0" Name="textBoxMortgageAmount" Text="165000" VerticalAlignment="Top" Width="130" />
+        
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,230,0,0" Name="textBlockMortgageTerm" Text="Mortgage term:" VerticalAlignment="Top" />
+        <TextBox Height="72" HorizontalAlignment="Left" Margin="235,208,0,0" Name="textBoxMortgageTerm" Text="30" VerticalAlignment="Top" Width="130" />
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="365,230,0,0" Name="textBlockMortgageTermYear" Text="years" VerticalAlignment="Top" />
+        
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,280,0,0" Name="textBlockMortgageInterestRate" Text="Interest rate:" VerticalAlignment="Top" />
+        <TextBox Height="72" HorizontalAlignment="Left" Margin="235,258,0,0" Name="textBoxMortgageInterestRate" Text="7" VerticalAlignment="Top" Width="130" />
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="365,280,0,0" Name="textBlockMortgageInterestRatePercentPerYear" Text="% per year" VerticalAlignment="Top" />
+                
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,330,0,0" Name="textBlockMortgageStartDate" Text="Mortgage start date:" VerticalAlignment="Top" />
+
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,420,0,0" Name="textBlockMortgageMonthlyPayments" Text="Monthly Payments:" VerticalAlignment="Top" />
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="230,420,0,0" Name="textBlockMortgageMonthlyPaymentsDollar" Text="$" VerticalAlignment="Top" />
+        <TextBox Height="72" HorizontalAlignment="Left" Margin="255,398,0,0" Name="textBoxMortgageMonthlyPayments" VerticalAlignment="Top" Width="150" />
+
+
+
+        <Button Content="Calculate" Height="72" HorizontalAlignment="Left" Margin="268,523,0,0" Name="buttonMortgageCalculate" VerticalAlignment="Top" Width="160" />
+        <Button Content="Detail" Height="72" HorizontalAlignment="Left" Margin="71,523,0,0" Name="buttonMortgageDetail" VerticalAlignment="Top" Width="160" />
+        <Image Height="120" HorizontalAlignment="Left" Margin="12,649,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="456" Source="http://www.whereisjim.com/home/images/MainBottomImage02.png"/>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
