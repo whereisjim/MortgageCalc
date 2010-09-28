@@ -21,7 +21,30 @@
         <controls:Pivot Title="MY APPLICATION">
             <!--Pivot item one-->
             <controls:PivotItem Header="Mortgage">
+                <Grid>
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="20,20,0,0" Name="textBlockMortgageAmount" Text="Mortgage amount:" VerticalAlignment="Top" />
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="188,-2,0,0" Name="textBoxMortgageAmount" Text="165000" VerticalAlignment="Top" Width="213" InputScope="Digits"/>
+        
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="20,80,0,0" Name="textBlockMortgageTerm" Text="Mortgage term:" VerticalAlignment="Top" />
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="188,58,0,0" Name="textBoxMortgageTerm" Text="30" VerticalAlignment="Top" Width="89" InputScope="Digits"/>
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="280,80,0,0" Name="textBlockMortgageTermYear" Text="years" VerticalAlignment="Top" />
+        
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="20,140,0,0" Name="textBlockMortgageInterestRate" Text="Interest rate:" VerticalAlignment="Top" />
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="188,118,0,0" Name="textBoxMortgageInterestRate" Text="7" VerticalAlignment="Top" Width="119" InputScope="Digits"/>
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="313,140,0,0" Name="textBlockMortgageInterestRatePercentPerYear" Text="% per year" VerticalAlignment="Top" />
+                
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="20,200,0,0" Name="textBlockMortgageDownPayment" Text="Down Payment:" VerticalAlignment="Top" />
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="188,178,0,0" Name="textBoxMortgageDownPayment" Text="20" VerticalAlignment="Top" Width="161" InputScope="Digits"/>
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="350,200,0,0" Name="textBlockMortgageDownPaymentPercentage" Text="%" VerticalAlignment="Top" />
 
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="20,299,0,0" Name="textBlockMortgageMonthlyPayments" Text="Monthly Payments:" VerticalAlignment="Top" />
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="206,277,0,0" Name="textBoxMortgageMonthlyPayments" VerticalAlignment="Top" Width="231" IsReadOnly="True" />
+
+                    <Button Content="Calculate" Height="72" HorizontalAlignment="Left" Margin="242,374,0,0" Name="buttonMortgageCalculate" VerticalAlignment="Top" Width="160" Click="buttonMortgageCalculate_Click" />
+                    <Button Content="Detail" Height="72" HorizontalAlignment="Left" Margin="45,374,0,0" Name="buttonMortgageDetail" VerticalAlignment="Top" Width="160" />
+                    <Image Height="120" HorizontalAlignment="Left" Margin="0,486,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="457" Source="http://www.whereisjim.com/home/images/MainBottomImage02.png"/>
+                    <Button Height="145" HorizontalAlignment="Left" Margin="-10,476,0,0" Name="buttonImage" VerticalAlignment="Top" Width="481" Click="buttonImage_Click" BorderThickness="0" />
+                </Grid>
             </controls:PivotItem>
  
             <!--Pivot item two-->
@@ -39,28 +62,7 @@
                     </ListBox>
             </controls:PivotItem>
         </controls:Pivot>
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,180,0,0" Name="textBlockMortgageAmount" Text="Mortgage amount:   $" VerticalAlignment="Top" />
-        <TextBox Height="72" HorizontalAlignment="Left" Margin="235,158,0,0" Name="textBoxMortgageAmount" Text="165000" VerticalAlignment="Top" Width="130" />
-        
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,230,0,0" Name="textBlockMortgageTerm" Text="Mortgage term:" VerticalAlignment="Top" />
-        <TextBox Height="72" HorizontalAlignment="Left" Margin="235,208,0,0" Name="textBoxMortgageTerm" Text="30" VerticalAlignment="Top" Width="130" />
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="365,230,0,0" Name="textBlockMortgageTermYear" Text="years" VerticalAlignment="Top" />
-        
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,280,0,0" Name="textBlockMortgageInterestRate" Text="Interest rate:" VerticalAlignment="Top" />
-        <TextBox Height="72" HorizontalAlignment="Left" Margin="235,258,0,0" Name="textBoxMortgageInterestRate" Text="7" VerticalAlignment="Top" Width="130" />
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="365,280,0,0" Name="textBlockMortgageInterestRatePercentPerYear" Text="% per year" VerticalAlignment="Top" />
-                
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,330,0,0" Name="textBlockMortgageStartDate" Text="Mortgage start date:" VerticalAlignment="Top" />
 
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="35,420,0,0" Name="textBlockMortgageMonthlyPayments" Text="Monthly Payments:" VerticalAlignment="Top" />
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="230,420,0,0" Name="textBlockMortgageMonthlyPaymentsDollar" Text="$" VerticalAlignment="Top" />
-        <TextBox Height="72" HorizontalAlignment="Left" Margin="255,398,0,0" Name="textBoxMortgageMonthlyPayments" VerticalAlignment="Top" Width="150" />
-
-
-
-        <Button Content="Calculate" Height="72" HorizontalAlignment="Left" Margin="268,523,0,0" Name="buttonMortgageCalculate" VerticalAlignment="Top" Width="160" />
-        <Button Content="Detail" Height="72" HorizontalAlignment="Left" Margin="71,523,0,0" Name="buttonMortgageDetail" VerticalAlignment="Top" Width="160" />
-        <Image Height="120" HorizontalAlignment="Left" Margin="12,649,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="456" Source="http://www.whereisjim.com/home/images/MainBottomImage02.png"/>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->
