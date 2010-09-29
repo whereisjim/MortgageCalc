@@ -71,5 +71,15 @@ namespace MortgageCalc
             wbt.Show();
         }
 
+        private void buttonTipCalculate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonMortgageDetail_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
