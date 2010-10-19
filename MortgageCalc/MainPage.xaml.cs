@@ -14,11 +14,15 @@ using System.Globalization;
 using Microsoft.Phone;
 using Microsoft.Phone.Tasks;
 using System.Threading;
+using System.IO;
+using System.IO.IsolatedStorage;
 
 namespace MortgageCalc
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+
         // Constructor
         public MainPage()
         {
@@ -29,6 +33,7 @@ namespace MortgageCalc
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
         }
 
+        // Load data for Settings
         // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -36,7 +41,62 @@ namespace MortgageCalc
             {
                 App.ViewModel.LoadData();
             }
-        }
+
+            if (settings.Contains("textboxMA"))
+            {     
+              textBoxMortgageAmount.Text = settings["textboxMA"] as string;
+            }
+            else
+            {
+               textBoxMortgageAmount.Text = "$150,000.00";
+            }
+
+            if (settings.Contains("textboxYears"))
+            {
+                textBoxMortgageTerm.Text = settings["textboxYears"] as string;
+            }
+            else
+            {
+                textBoxMortgageTerm.Text = "30";
+            }
+
+            if (settings.Contains("textboxIP"))
+            {
+                textBoxMortgageInterestRate.Text = settings["textboxIP"] as string;
+            }
+            else
+            {
+                textBoxMortgageInterestRate.Text = "7";
+            }
+
+            if (settings.Contains("textboxMP"))
+            {
+                textBoxMortgageMonthlyPayments.Text = settings["textboxMP"] as string;
+            }
+            else
+            {
+                textBoxMortgageMonthlyPayments.Text = "$798.36";
+            }
+
+            if (settings.Contains("textboxDPP"))
+            {
+               textBoxMortgageDownPaymentPercent.Text = settings["textboxDPP"] as string;
+            }
+            else
+            {
+                textBoxMortgageDownPaymentPercent.Text = "20";
+            }
+
+            if (settings.Contains("textblockDPA"))
+            {
+                textBlockMortgageDownPaymentAmount.Text = settings["textblockDPA"] as string;
+            }
+            else
+            {
+                textBlockMortgageDownPaymentAmount.Text = "$30,000.00";
+            }
+        } 
+      
 
         private void buttonMortgageCalculate_Click(object sender, RoutedEventArgs e)
         {
@@ -49,11 +109,50 @@ namespace MortgageCalc
             double paymentNum; // number of months to pay
             double paymentVal; // value of monthly payment
 
-            propertyPrice = double.Parse(this.textBoxMortgageAmount.Text, NumberStyles.Any);
-            interestPerc = double.Parse(this.textBoxMortgageInterestRate.Text);
+            try
+            {
+                propertyPrice = double.Parse(this.textBoxMortgageAmount.Text, NumberStyles.Any);
+                if (propertyPrice == 0) MessageBox.Show("Please check your purchase price and enter your correct purchase price");
+
+            }
+            catch (Exception)
+            {
+                propertyPrice = -1;
+                MessageBox.Show("Purchase price is invalid. Please enter your correct one");
+            }
+
+            try
+            {
+                interestPerc = double.Parse(this.textBoxMortgageInterestRate.Text);
+            }
+            catch (Exception)
+            {
+                interestPerc = -1;
+                MessageBox.Show("Interest rate is invalid. Please enter your correct one");
+            }
+           
             interestRate = interestPerc / (100 * 12);
-            years = double.Parse(this.textBoxMortgageTerm.Text);
-            downpaymentPerc = double.Parse(this.textBoxMortgageDownPaymentPercent.Text);
+
+            try
+            {
+                years = double.Parse(this.textBoxMortgageTerm.Text);
+            }
+            catch (Exception)
+            {
+                years = -1;
+                MessageBox.Show("Mortgage term is invalid. Please enter your correct one");
+            }
+
+            try
+            {
+                downpaymentPerc = double.Parse(this.textBoxMortgageDownPaymentPercent.Text);
+            }
+            catch (Exception)
+            {
+                downpaymentPerc = -1;
+                MessageBox.Show("Mortgage term is invalid. Please enter your correct one");
+            }
+            
             downpaymentAmount = propertyPrice * (downpaymentPerc / 100);
             paymentNum = years * 12;
 
@@ -61,10 +160,64 @@ namespace MortgageCalc
 
             CultureInfo cult = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = cult;
-            this.textBoxMortgageMonthlyPayments.Text = paymentVal.ToString("C");
+            
+            // Add or update the settings
+            if (settings.Contains("textboxMA"))
+            {
+                settings["textboxMA"] = propertyPrice.ToString("C");
+            }
+            else
+            {
+                settings.Add("textboxMA", propertyPrice.ToString("C"));
+            }
             this.textBoxMortgageAmount.Text = propertyPrice.ToString("C");
+
+            if (settings.Contains("textboxYears"))
+            {
+                settings["textboxYears"] = years.ToString();
+            }
+            else
+            {
+                settings.Add("textboxYears", years.ToString());
+            }
+
+            if (settings.Contains("textboxIP"))
+            {
+                settings["textboxIP"] = interestPerc.ToString();
+            }
+            else
+            {
+                settings.Add("textboxIP", years.ToString());
+            }
+
+            if (settings.Contains("textboxDPP"))
+            {
+                settings["textboxDPP"] = downpaymentPerc.ToString();
+            }
+            else
+            {
+                settings.Add("textboxDPP", downpaymentPerc.ToString());
+            }
+
+            if (settings.Contains("textblockDPA"))
+            {
+                settings["textblockDPA"] = downpaymentAmount.ToString("C");
+            }
+            else
+            {
+                settings.Add("textblockDPA", downpaymentAmount.ToString("C"));
+            }
             this.textBlockMortgageDownPaymentAmount.Text = downpaymentAmount.ToString("C");
 
+            if (settings.Contains("textboxMP"))
+            {
+                settings["textboxMP"] = paymentVal.ToString("C");
+            }
+            else
+            {
+                settings.Add("textboxMP", paymentVal.ToString("C"));
+            }
+            this.textBoxMortgageMonthlyPayments.Text = paymentVal.ToString("C");
         }
 
         private void buttonImage_Click(object sender, RoutedEventArgs e)
@@ -80,25 +233,52 @@ namespace MortgageCalc
             double tipPercent;
             double numberOfPeople;
             double tipAmount;
-            double totalTipPerPersonAmount;
+            double totalPerPersonAmount;
 
-            billAmount = double.Parse(this.textBoxBillAmount.Text);
-            tipPercent = double.Parse(this.textBoxTipPercent.Text);
-            numberOfPeople = double.Parse(this.textBoxTipNumberOfPeople.Text);
+            try
+            {
+                billAmount = double.Parse(this.textBoxBillAmount.Text);
+                if (billAmount == 0) MessageBox.Show("Please check your purchase price and enter your correct purchase price");
+
+            }
+            catch (Exception)
+            {
+                billAmount = -1;
+                MessageBox.Show("Bill Amount is invalid. Please enter your correct one");
+            }
+
+            try
+            {
+                tipPercent = double.Parse(this.textBoxTipPercent.Text);
+            }
+            catch (Exception)
+            {
+                tipPercent = -1;
+                MessageBox.Show("Percentage of Tip is invalid. Please enter your correct one");
+            }
+
+            try
+            {
+                numberOfPeople = double.Parse(this.textBoxTipNumberOfPeople.Text);
+            }
+            catch (Exception)
+            {
+                numberOfPeople = -1;
+                MessageBox.Show("Number of People is invalid. Please enter your correct one");
+            }
+            
 
             tipAmount = billAmount * (tipPercent / 100);
-            totalTipPerPersonAmount = tipAmount / numberOfPeople;
+            totalPerPersonAmount = (billAmount + tipAmount) / numberOfPeople;
 
             this.textBoxTipAmount.Text = tipAmount.ToString();
-            this.textBoxTipTotalPerPerson.Text = totalTipPerPersonAmount.ToString();
-
+            this.textBoxTotalPerPerson.Text = totalPerPersonAmount.ToString();
         }
 
         private void buttonMortgageDetail_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
 
         private void buttonLoanCalculate_Click(object sender, RoutedEventArgs e)
         {
@@ -164,6 +344,12 @@ namespace MortgageCalc
             this.textBoxLoanMonthlyPayments.Text = carpaymentVal.ToString("C");
             this.textBoxCarAmount.Text = carPrice.ToString("C");
             this.textBlockLoanDownPaymentAmount.Text = cardownpaymentAmount.ToString("C");
+
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+           
 
         }
 

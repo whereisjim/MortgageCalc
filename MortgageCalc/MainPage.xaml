@@ -22,22 +22,22 @@
             <controls:PivotItem Header="Mortgage">
                 <Grid x:Name="MortgageLayout" Background="Transparent">
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="26,108,0,0" Name="textBlockMortgageAmount" Text="House price:" VerticalAlignment="Top" />
-                    <TextBox Height="72" HorizontalAlignment="Left" Margin="194,86,0,0" Name="textBoxMortgageAmount" Text="$150,000.00" VerticalAlignment="Top" Width="213" InputScope="TelephoneNumber"/>
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="194,86,0,0" Name="textBoxMortgageAmount"  VerticalAlignment="Top" Width="213" InputScope="TelephoneNumber"/>
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="26,168,0,0" Name="textBlockMortgageTerm" Text="Mortgage term:" VerticalAlignment="Top" />
-                    <TextBox Height="72" HorizontalAlignment="Left" Margin="194,146,0,0" Name="textBoxMortgageTerm" Text="30" VerticalAlignment="Top" Width="89" InputScope="TelephoneNumber"/>
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="194,146,0,0" Name="textBoxMortgageTerm" VerticalAlignment="Top" Width="89" InputScope="TelephoneNumber" />
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="286,168,0,0" Name="textBlockMortgageTermYear" Text="years" VerticalAlignment="Top" />
         
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="26,228,0,0" Name="textBlockMortgageInterestRate" Text="Interest rate:" VerticalAlignment="Top" />
-                    <TextBox Height="72" HorizontalAlignment="Left" Margin="194,206,0,0" Name="textBoxMortgageInterestRate" Text="7" VerticalAlignment="Top" Width="119" InputScope="TelephoneNumber"/>
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="194,206,0,0" Name="textBoxMortgageInterestRate" VerticalAlignment="Top" Width="119" InputScope="TelephoneNumber"/>
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="319,228,0,0" Name="textBlockMortgageInterestRatePercentPerYear" Text="% per year" VerticalAlignment="Top" />
                 
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="26,288,0,0" Name="textBlockMortgageDownPayment" Text="Down Payment:" VerticalAlignment="Top" />
-                    <TextBox Height="72" HorizontalAlignment="Left" Margin="194,266,0,0" Name="textBoxMortgageDownPaymentPercent" Text="20" VerticalAlignment="Top" Width="69" InputScope="TelephoneNumber"/>
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="194,266,0,0" Name="textBoxMortgageDownPaymentPercent" VerticalAlignment="Top" Width="69" InputScope="TelephoneNumber"/>
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="260,288,0,0" Name="textBlockMortgageDownPaymentPercentage" Text="%  >>" VerticalAlignment="Top" Width="67" />
-                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="331,288,0,0" Name="textBlockMortgageDownPaymentAmount" Text="$30,000.00" VerticalAlignment="Top" Width="116" />
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="331,288,0,0" Name="textBlockMortgageDownPaymentAmount" VerticalAlignment="Top" Width="116" />
                     
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="26,387,0,0" Name="textBlockMortgageMonthlyPayments" Text="Monthly Payments:" VerticalAlignment="Top" />
-                    <TextBox Height="72" HorizontalAlignment="Left" Margin="212,365,0,0" Name="textBoxMortgageMonthlyPayments" VerticalAlignment="Top" Width="231" IsReadOnly="True" Text="$798.36"/>
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="212,365,0,0" Name="textBoxMortgageMonthlyPayments" VerticalAlignment="Top" Width="231" IsReadOnly="True"  />
 
                     <Button Content="Calculate" Height="72" HorizontalAlignment="Left" Margin="235,7,0,0" Name="buttonMortgageCalculate" VerticalAlignment="Top" Width="160" Click="buttonMortgageCalculate_Click" />
                     <Button Content="Detail" Height="72" HorizontalAlignment="Left" Margin="38,7,0,0" Name="buttonMortgageDetail" VerticalAlignment="Top" Width="160" Click="buttonMortgageDetail_Click" />
@@ -62,8 +62,8 @@
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="74,199,0,0" Name="textBlockTipAmount" Text="Tip Amount:" VerticalAlignment="Top" />
                     <TextBox Height="72" HorizontalAlignment="Left" Margin="206,177,0,0" Name="textBoxTipAmount" Text="$0.00" VerticalAlignment="Top" Width="170" InputScope="Digits" IsReadOnly="True"/>
                     
-                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="33,269,0,0" Name="textBlockTipTotalPerPerson" Text="Total Per Person:" VerticalAlignment="Top" />
-                    <TextBox Height="72" HorizontalAlignment="Left" Margin="205,250,0,0" Name="textBoxTipTotalPerPerson" Text="$0.00" VerticalAlignment="Top" Width="231" IsReadOnly="True" />
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="33,269,0,0" Name="textBlockTotalPerPerson" Text="Total Per Person:" VerticalAlignment="Top" />
+                    <TextBox Height="72" HorizontalAlignment="Left" Margin="205,250,0,0" Name="textBoxTotalPerPerson" Text="$0.00" VerticalAlignment="Top" Width="231" IsReadOnly="True" />
 
                     <Button Content="Calculate" Height="72" HorizontalAlignment="Left" Margin="242,374,0,0" Name="buttonTipCalculate" VerticalAlignment="Top" Width="160" Click="buttonTipCalculate_Click" />
                     <Image Height="120" HorizontalAlignment="Left" Margin="0,486,0,0" Name="image22" Stretch="Fill" VerticalAlignment="Top" Width="457" Source="http://www.whereisjim.com/home/images/MainBottomImage02.png"/>
