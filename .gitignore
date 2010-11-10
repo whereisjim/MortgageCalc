@@ -7,3 +7,4 @@ temp/
 test-results/
 *.suo
 obj/
+*.sln

@@ -42,65 +42,65 @@ namespace MortgageCalc
                 App.ViewModel.LoadData();
             }
 
-            if (settings.Contains("textboxMA"))
-            {     
-              textBoxMortgageAmount.Text = settings["textboxMA"] as string;
+            if (settings.Contains("textBoxMortgageAmountSettings"))
+            {
+                textBoxMortgageAmount.Text = settings["textBoxMortgageAmountSettings"] as string;
             }
             else
             {
                textBoxMortgageAmount.Text = "$150,000.00";
             }
 
-            if (settings.Contains("textboxYears"))
+            if (settings.Contains("textBoxMortgageTermSettings"))
             {
-                textBoxMortgageTerm.Text = settings["textboxYears"] as string;
+                textBoxMortgageTerm.Text = settings["textBoxMortgageTermSettings"] as string;
             }
             else
             {
                 textBoxMortgageTerm.Text = "30";
             }
 
-            if (settings.Contains("textboxIP"))
+            if (settings.Contains("textBoxMortgageInterestRateSettings"))
             {
-                textBoxMortgageInterestRate.Text = settings["textboxIP"] as string;
+                textBoxMortgageInterestRate.Text = settings["textBoxMortgageInterestRateSettings"] as string;
             }
             else
             {
                 textBoxMortgageInterestRate.Text = "7";
             }
 
-            if (settings.Contains("textboxMP"))
+            if (settings.Contains("textBoxMortgageDownPaymentPercentSettings"))
             {
-                textBoxMortgageMonthlyPayments.Text = settings["textboxMP"] as string;
-            }
-            else
-            {
-                textBoxMortgageMonthlyPayments.Text = "$798.36";
-            }
-
-            if (settings.Contains("textboxDPP"))
-            {
-               textBoxMortgageDownPaymentPercent.Text = settings["textboxDPP"] as string;
+                textBoxMortgageDownPaymentPercent.Text = settings["textBoxMortgageDownPaymentPercentSettings"] as string;
             }
             else
             {
                 textBoxMortgageDownPaymentPercent.Text = "20";
             }
-
-            if (settings.Contains("textblockDPA"))
+                        
+            if (settings.Contains("textBlockMortgageDownPaymentAmountSettings"))
             {
-                textBlockMortgageDownPaymentAmount.Text = settings["textblockDPA"] as string;
+                textBlockMortgageDownPaymentAmount.Text = settings["textBlockMortgageDownPaymentAmountSettings"] as string;
             }
             else
             {
                 textBlockMortgageDownPaymentAmount.Text = "$30,000.00";
+            }
+
+            if (settings.Contains("textBoxMortgageMonthlyPaymentsSettings"))
+            {
+                textBoxMortgageMonthlyPayments.Text = settings["textBoxMortgageMonthlyPaymentsSettings"] as string;
+            }
+            else
+            {
+                textBoxMortgageMonthlyPayments.Text = "$798.36";
             }
         } 
       
 
         private void buttonMortgageCalculate_Click(object sender, RoutedEventArgs e)
         {
-            double propertyPrice; // total mortgage loan
+            double housePrice; // total mortgage loan
             double interestPerc; // percent annual interest
             double interestRate; // monthly interest rate
             double years; // years to pay
@@ -108,27 +108,46 @@ namespace MortgageCalc
             double downpaymentAmount; // down payment amount
             double paymentNum; // number of months to pay
             double paymentVal; // value of monthly payment
+            // string tempText;
 
             try
             {
-                propertyPrice = double.Parse(this.textBoxMortgageAmount.Text, NumberStyles.Any);
-                if (propertyPrice == 0) MessageBox.Show("Please check your purchase price and enter your correct purchase price");
+                housePrice = double.Parse(this.textBoxMortgageAmount.Text, NumberStyles.Any);
+                if (housePrice == 0) MessageBox.Show("You entered $0 for house price. Are you sure?");
 
             }
             catch (Exception)
             {
-                propertyPrice = -1;
-                MessageBox.Show("Purchase price is invalid. Please enter your correct one");
+                MessageBox.Show("Something wrong with the house price. Check the price and try again.");
+                housePrice = 0;
+                // Jim.ThingsToDo: replace 'housePrice' value from isolatedStorate Setting
+                // a. Check if settings contains any value.
+                // b. Check if settings variable name and textblock name can be same or should have different name?
+                if (settings.Contains("textBoxMortgageAmountSettings"))
+                {
+                    textBoxMortgageAmount.Text = settings["textBoxMortgageAmountSettings"] as string;
+                    housePrice = double.Parse(textBoxMortgageAmount.Text, NumberStyles.Any);
+                }
+                else
+                {
+                    housePrice = 150000.00;
+                }
             }
-
+            
             try
             {
                 interestPerc = double.Parse(this.textBoxMortgageInterestRate.Text);
+                if (interestPerc == 0) MessageBox.Show("0% interest? Nice!");
             }
             catch (Exception)
             {
-                interestPerc = -1;
-                MessageBox.Show("Interest rate is invalid. Please enter your correct one");
+                MessageBox.Show("Something wrong with the interest rate. Check the rate and try again");
+                interestPerc = 1;
+                if (settings.Contains("textBoxMortgageInterestRateSettings"))
+                {
+                    textBoxMortgageInterestRate.Text = settings["textBoxMortgageInterestRateSettings"] as string;
+                    interestPerc = double.Parse(textBoxMortgageInterestRate.Text);
+                }
             }
            
             interestRate = interestPerc / (100 * 12);
@@ -153,69 +172,69 @@ namespace MortgageCalc
                 MessageBox.Show("Mortgage term is invalid. Please enter your correct one");
             }
             
-            downpaymentAmount = propertyPrice * (downpaymentPerc / 100);
+            downpaymentAmount = housePrice * (downpaymentPerc / 100);
             paymentNum = years * 12;
 
-            paymentVal = (propertyPrice - propertyPrice * downpaymentPerc / 100) * (interestRate / (1 - Math.Pow((1 + interestRate), (-paymentNum))));
+            paymentVal = (housePrice - housePrice * downpaymentPerc / 100) * (interestRate / (1 - Math.Pow((1 + interestRate), (-paymentNum))));
 
             CultureInfo cult = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = cult;
             
             // Add or update the settings
-            if (settings.Contains("textboxMA"))
+            if (settings.Contains("textBoxMortgageAmountSettings"))
             {
-                settings["textboxMA"] = propertyPrice.ToString("C");
+                settings["textBoxMortgageAmountSettings"] = housePrice.ToString("C");
             }
             else
             {
-                settings.Add("textboxMA", propertyPrice.ToString("C"));
+                settings.Add("textBoxMortgageAmountSettings", housePrice.ToString("C"));
             }
-            this.textBoxMortgageAmount.Text = propertyPrice.ToString("C");
+            this.textBoxMortgageAmount.Text = housePrice.ToString("C");
 
-            if (settings.Contains("textboxYears"))
+            if (settings.Contains("textBoxMortgageTermSettings"))
             {
-                settings["textboxYears"] = years.ToString();
+                settings["textBoxMortgageTermSettings"] = years.ToString();
             }
             else
             {
-                settings.Add("textboxYears", years.ToString());
-            }
-
-            if (settings.Contains("textboxIP"))
-            {
-                settings["textboxIP"] = interestPerc.ToString();
-            }
-            else
-            {
-                settings.Add("textboxIP", years.ToString());
+                settings.Add("textBoxMortgageTermSettings", years.ToString());
             }
 
-            if (settings.Contains("textboxDPP"))
+            if (settings.Contains("textBoxMortgageInterestRateSettings"))
             {
-                settings["textboxDPP"] = downpaymentPerc.ToString();
+                settings["textBoxMortgageInterestRateSettings"] = interestPerc.ToString();
             }
             else
             {
-                settings.Add("textboxDPP", downpaymentPerc.ToString());
+                settings.Add("textBoxMortgageInterestRateSettings", years.ToString());
             }
 
-            if (settings.Contains("textblockDPA"))
+            if (settings.Contains("textBoxMortgageDownPaymentPercentSettings"))
             {
-                settings["textblockDPA"] = downpaymentAmount.ToString("C");
+                settings["textBoxMortgageDownPaymentPercentSettings"] = downpaymentPerc.ToString();
             }
             else
             {
-                settings.Add("textblockDPA", downpaymentAmount.ToString("C"));
+                settings.Add("textBoxMortgageDownPaymentPercentSettings", downpaymentPerc.ToString());
+            }
+
+            if (settings.Contains("textBlockMortgageDownPaymentAmountSettings"))
+            {
+                settings["textBlockMortgageDownPaymentAmountSettings"] = downpaymentAmount.ToString("C");
+            }
+            else
+            {
+                settings.Add("textBlockMortgageDownPaymentAmountSettings", downpaymentAmount.ToString("C"));
             }
             this.textBlockMortgageDownPaymentAmount.Text = downpaymentAmount.ToString("C");
 
-            if (settings.Contains("textboxMP"))
+            if (settings.Contains("textBoxMortgageMonthlyPaymentsSettings"))
             {
-                settings["textboxMP"] = paymentVal.ToString("C");
+                settings["textBoxMortgageMonthlyPaymentsSettings"] = paymentVal.ToString("C");
             }
             else
             {
-                settings.Add("textboxMP", paymentVal.ToString("C"));
+                settings.Add("textBoxMortgageMonthlyPaymentsSettings", paymentVal.ToString("C"));
             }
             this.textBoxMortgageMonthlyPayments.Text = paymentVal.ToString("C");
         }
@@ -223,7 +242,7 @@ namespace MortgageCalc
         private void buttonImage_Click(object sender, RoutedEventArgs e)
         {
             WebBrowserTask wbt = new WebBrowserTask();
-            wbt.URL = "http://www.amerisave.com";
+            wbt.URL = "http://www.whereisjim.com/home/FinCalculatorMainBottomImageClick.htm";
             wbt.Show();
         }
 
